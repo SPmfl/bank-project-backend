@@ -1,9 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn, Timestamp } from 'typeorm';
+import { CustomerEntity } from 'src/customers/customer.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn, Timestamp } from 'typeorm';
 
 @Entity('users')
 export class UserEntity {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @OneToMany(() => CustomerEntity, (customer) => customer.id)
+  customers: CustomerEntity[]
 
   @Column({ unique: true })
   email: string;

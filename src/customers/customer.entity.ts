@@ -7,7 +7,7 @@ export class CustomerEntity {
   id: number;
 
   @ManyToOne(() => UserEntity, (user) => user.id)
-  user: UserEntity
+  user: UserEntity;
 
   @Column({ unique: true })
   email: string;

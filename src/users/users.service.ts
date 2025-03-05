@@ -1,15 +1,10 @@
 import {
-  HttpException,
-  HttpStatus,
   Injectable,
-  InternalServerErrorException,
   Logger,
 } from '@nestjs/common';
-import { DataSource, Repository } from 'typeorm';
+import { DataSource, DeleteResult, Repository } from 'typeorm';
 import { UserEntity } from './user.entity';
 import ErrorHandlerHttpRequests from 'src/utils/ErrorHandlerHttpRequests';
-
-
 
 export interface CreateUser {
   email: string;
@@ -61,8 +56,20 @@ export class UsersService {
     }
   }
 
-  getUserSalute(): string {
-    return "Hola Usuario"
+  // delete user by id
+  async deleteUserById(id: number): Promise<DeleteResult | undefined> {
+    try {
+      const user = await this.userRepository.findOneBy({ id });
+      if (!user) {
+        return {
+          raw: {},
+          affected: 0
+        };
+      }
+      return await this.userRepository.delete({ id });
+    } catch (err) {
+      ErrorHandlerHttpRequests(err);
+    }
   }
 }
 

@@ -1,5 +1,6 @@
+import { Products } from 'src/products/products.entity';
 import { UserEntity } from 'src/users/user.entity';
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
 
 @Entity('customers')
 export class CustomerEntity {
@@ -36,5 +37,9 @@ export class CustomerEntity {
   @Column({ type: "timestamp", default: () => 'CURRENT_TIMESTAMP' })
   birthdate: Date
 
+  @OneToMany(() => Products, product => product.id)
+  products: Products[];
+
+  //TODO: implement foreign key for user modification
 }
 

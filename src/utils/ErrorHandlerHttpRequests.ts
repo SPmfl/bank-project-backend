@@ -31,3 +31,7 @@ const ErrorHandlerHttpRequests = (error: any): undefined => { // Cambiamos el ti
 }
 
 export default ErrorHandlerHttpRequests;
+
+
+//check postgres error codes
+//https://www.typeerror.org/docs/postgresql~14/errcodes-appendix

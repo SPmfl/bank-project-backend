@@ -8,12 +8,13 @@ import { DataSource } from 'typeorm';
 import { TypeOrmModule } from './datasource/typeorm.module';
 import { UsersModule } from './users/users.module';
 import { CustomersModule } from './customers/customers.module';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [ConfigModule.forRoot({
     load: [configuration],
     ...dbconfiguration()
-  }), TypeOrmModule, UsersModule, CustomersModule],
+  }), TypeOrmModule, UsersModule, CustomersModule, ProductsModule],
   controllers: [AppController],
   providers: [AppService],
 })
